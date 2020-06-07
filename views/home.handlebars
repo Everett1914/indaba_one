@@ -1,0 +1,118 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-12">
+    <div class="jumbotron py-4 my-4">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 col-lg-10">
+          <h1 class="display-4">Hello, {{name}}!</h1>
+          <p class="lead">Start organizing an event by clicking the button below.</p>
+          <a class="btn btn-primary btn-lg" href="/create" role="button">Create Event</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+  <div class="col-12 col-lg-10">
+    <h1 class="mt-4 mb-5">Your events:</h1>
+  </div>
+</div>
+
+{{#if eventsManaging}}
+{{#each eventsManaging}}
+<div class="reservation-display mb-4 w-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-lg-10">
+      <p class="pl-2">
+        <p class="h3 mb-3">{{this.event_name}}</p>
+        <a class="btn btn-primary btn-lg" href="/manage/{{this.event_id}}"
+        role="button">View/edit details</a>
+        <a class="btn btn-secondary btn-lg ml-3" href="/make-reservations/{{this.event_id}}"
+        role="button">Reserve time slot</a>
+      </p>
+    </div>
+  </div>
+</div>
+{{/each}}
+{{else}}
+<p class="h3"> You are not organizing any upcoming events</p>
+{{/if}}
+
+<div class="row d-flex justify-content-center">
+  <div class="col-12 col-lg-10">
+    <h1 class="mt-4 mb-5">Your reservations:</h1>
+  </div>
+</div>
+
+{{#if eventsAttending}}
+{{#each eventsAttending}}
+<div class="reservation-display mb-4 w-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-lg-6">
+      <h3>{{this.title}}</h3>
+      <p class="mb-0 mt-3"><b>Created by:</b> {{this.creator}}</p>
+      <p><b>Description:</b> {{this.description}}</p>
+    </div>
+    <div class="col-12 col-lg-6">
+      <a class="btn btn-primary btn-md mt-3" href="/make-reservations/{{this.event_id}}">Make another reservation</a>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-lg-10">
+      <h5 class="mt-4">Your Reservation(s):</h5>
+    </div>
+  </div>
+
+  {{#each this.reservations}}
+  <div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-lg-10">
+        <b><p class="mb-0 date">{{this.slot_date}}</p></b>
+        <p class="mb-0"><span class="time">{{this.start_time}}</span> - <span class="time">{{this.end_time}}</span></p>
+        <p class="mb-0">{{this.slot_location}}</p>
+        <h6 class="mt-3">Who signed up:</h6>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-lg-10">
+        {{#if this.visibility}}
+        <div class="table-responsive" id="resv">
+          <table class="table table-sm table-striped table-light">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each this.attendees}}
+            <tr>
+              <td>{{this.name}}</td>
+              <td>{{this.email}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        </div>
+        {{else}}
+        <p>Sorry, attendee information for this event is private</p>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-lg-10">
+        <button class="btn btn-danger btn-sm mb-4 py-2 reservation-delete"
+        data-slot-id="{{this.slot_id}}">Cancel reservation</button>
+      </div>
+    </div>
+
+    <br>
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+{{else}}
+<p class="h3">You don't have any upcoming reservations</p>
+{{/if}}

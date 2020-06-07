@@ -1,0 +1,23 @@
+committed
+more config for google auth
+Code review and cleanup for passport authentication
+Create login page with Google button
+Redirect user to their original destination after login
+Secure session secret
+Modify color scheme
+
+
+planned commits
+Remove obsolete code
+Testing and bug fixes
+
+wish list
+Add feature to change email
+Add feature to change name
+Add facebook authentication strategy
+	set up facebook account ????
+	add facebook auth module
+	add facebook button to login page
+	set up app strategy
+	handle edge cases for existing users logging in w/ new auth provider
+Add privacy policy at /privacy-policy
