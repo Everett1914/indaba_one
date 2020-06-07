@@ -18,7 +18,7 @@ Indaba One is a free, open-source meeting scheduling app that supports event cre
 
 Indaba One is maintained by:
 
-* [Everett Williams](https://github.com/EverettWilliams/indaba-one)
+* [Everett Williams](https://github.com/Everett1914/indaba_one)
 
 Much of this project is based off of [Indaba](https://github.com/pauladams12345/indaba), a scheduling app created for Oregon State University by:
 
